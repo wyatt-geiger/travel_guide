@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet'/>
+    
+    <!-- webpage title -->
+    <title>Mapbox Test</title>
+
+    <!-- this style tag modifies the overall map element. margin:0 auto aligns the map in the center -->
+    <style>
+        #map {
+            height: 50vh;
+            width: 50vw;
+            margin:0 auto;
+        }
+    </style>
+    
+    <!--- imports the mapbox SDK script -->
+    <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+    
+</head>
+<body>
+    <!--- places the map on the page -->
+    <div id='map'></div>
+
+    <!-- imports mapbox_script.js -->
+    <script src="{{url_for('static', filename='mapbox_script.js')}}"></script>
+
+    <script>loadData( {{ city|tojson }}, {{ country|tojson }} )</script>
+    <!-- although this code appears to be erroring, the program functions as intended. This line
+    calls on the function loadData in mapbox_script and uses the user input as the arguments
+    to create the map  -->
+
+</body>
+</html>

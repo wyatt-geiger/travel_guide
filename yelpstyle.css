@@ -1,0 +1,17 @@
+body {
+    
+    background-image: url('Travel1.jpeg');   
+        height: 100vh;
+       
+       
+    height: 600px;
+    width: 750px;
+    margin: auto;
+    text-align: center;
+        
+  }
+
+  table{
+      
+      background-color: antiquewhite;
+  }
