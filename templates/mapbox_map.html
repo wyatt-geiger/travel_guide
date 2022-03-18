@@ -30,7 +30,7 @@
     <!-- imports mapbox_script.js -->
     <script src="{{url_for('static', filename='mapbox_script.js')}}"></script>
 
-    <script>loadData( {{ city|tojson }}, {{ country|tojson }} )</script>
+    <script>loadData( {{ city|tojson }}, {{ state|tojson }}, {{ country|tojson }} )</script>
     <!-- although this code appears to be erroring, the program functions as intended. This line
     calls on the function loadData in mapbox_script and uses the user input as the arguments
     to create the map  -->

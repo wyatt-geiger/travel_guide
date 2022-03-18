@@ -1,6 +1,6 @@
 // This is the script that creates the mapbox map on the page using user input
 
-function loadData(city, country) {
+function loadData(city, state, country) {
 
     mapboxgl.accessToken = 'pk.eyJ1IjoibWFuZGlibGVjbGF3IiwiYSI6ImNrNmxpcWJ4MzBhamozZXBiZzVoNm11cmgifQ.lt7or9puZArJpANdrnIrUg';
     
@@ -8,7 +8,7 @@ function loadData(city, country) {
 
     mapboxClient.geocoding
         .forwardGeocode({
-            query: `${city}, ${country}`, // this is the 'formatted string' of the user input. This determines where the map centers itself
+            query: `${city}, ${state}, ${country}`, // this is the 'formatted string' of the user input. This determines where the map centers itself
             autocomplete: false,
             limit: 1
         })
