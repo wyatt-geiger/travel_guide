@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Project 4 Working Title</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- the line above introduces bootstrap to the program -->
+    
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     
 </head>
@@ -16,15 +20,15 @@
     <form method="GET" action="get_map">
 
         <label>Enter a city:</label>
-        <input name="city" id="city_input">
+        <br><input name="city" id="city_input"></form></br>
 
-        <label>Enter a state (if country is United States):</label>
-        <input name="state" id="state_input">
+        <label>Enter a state (only for United States):</label>
+        <br><input name="state" id="state_input"></br>
 
         <label>Enter a country:</label>
-        <input name="country" id="country_input">
+        <br><input name="country" id="country_input"></br>
 
-        <button type="submit">Go!</button>
+        <br><button type="submit">Go!</button></br>
 
     </form>
     
