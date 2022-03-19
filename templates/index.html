@@ -5,30 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Project 4 Working Title</title>
+    <title>Welcome Page</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- the line above introduces bootstrap to the program -->
     
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Qwigley&display=swap" rel="stylesheet">
     
 </head>
 <body>
 
-    <h1>Welcome Page</h1>
+    <h1>Globe Trekker</h1>
     
     <form method="GET" action="get_map">
 
         <label>Enter a city:</label>
-        <br><input name="city" id="city_input"></form></br>
+        <br><input name="city" id="input_box"></br>
 
-        <label>Enter a state (only for United States):</label>
-        <br><input name="state" id="state_input"></br>
+        <label>Enter a state*:</label>
+        <br><input name="state" id="input_box"></br>
 
         <label>Enter a country:</label>
-        <br><input name="country" id="country_input"></br>
+        <br><input name="country" id="input_box"></br>
 
-        <br><button type="submit">Go!</button></br>
+        <br><button id="submit_button" type="submit">Go!</button></br>
+
+        <p id="optional_state">*Optional, only for United States</p>
 
     </form>
     
