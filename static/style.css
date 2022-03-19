@@ -2,6 +2,7 @@ h1 {
     font-family: 'Qwigley', cursive;
     font-size: 150px;
 }
+/* adds style to the header */
 
 body {
     text-align: center;
@@ -9,22 +10,25 @@ body {
     font-weight: bold;
     font-size: 25px;
 }
+/* adds style to the body, and uses Travel1.jpeg inside static folder as the background */
 
 label {
     background-color: rgb(51, 102, 255, 0.8);
     color: white;
     text-shadow: 2px 2px black;
     width: 25%;
-    border: dashed 3px;
+    border: solid 3px;
     border-color: black;
     border-radius: 25px;
 }
+/* adds style to the labels */
 
 #input_box {
     height: 30px;
     margin: 10px;
     text-align: center;
 }
+/* adds style to the input boxes */
 
 #optional_state {
     color: rgba(255, 255, 255, 0.685);
@@ -35,7 +39,9 @@ label {
     width: 100%;
     text-shadow: 2px 2px black;
 }
+/* adds style to the disclaimer at bottom of page */
 
 #submit_button {
     font-weight: bold;
 }
+/* adds style to the submit button */
