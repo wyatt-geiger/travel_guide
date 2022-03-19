@@ -40,9 +40,8 @@
 
     <!-- script that puts together the youtube link and gives the iframe its video source -->
     <script>
-        let videoID = "B4-L2nfGcuE"
         let youTubeBaseLink = "https://www.youtube.com/embed/"
-        let youtubeVideoLink = youTubeBaseLink + videoID
+        let youtubeVideoLink = youTubeBaseLink + {{videoID|tojson}}
         console.log(youtubeVideoLink)
         let pageVideo = document.getElementById('video')
         pageVideo.setAttribute("src",youtubeVideoLink)

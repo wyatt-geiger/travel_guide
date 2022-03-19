@@ -15,3 +15,10 @@ def get_longitude_latitude(location_data): # this is used for the other APIs
 
     return longitude, latitude
 
+def location_main(city, country):
+
+    location_data = get_location(city, country)
+
+    longitude, latitude = get_longitude_latitude(location_data)
+
+    return longitude, latitude
