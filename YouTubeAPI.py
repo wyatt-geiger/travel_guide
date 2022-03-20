@@ -1,7 +1,7 @@
 import googleapiclient.discovery
 import googleapiclient.errors
 from location import location_main
-
+from key import youtube_key
 '''A program for sending a search request to the YouTube API'''
 
 def youtubeAPI_request(city, country):
@@ -30,7 +30,7 @@ def youtubeAPI_request(city, country):
     return videoID
 
 def get_key():
-    key = input('Type API Key')
+    key = youtube_key
     return key
 
 def get_location(city, country):
