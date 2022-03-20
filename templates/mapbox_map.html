@@ -35,5 +35,17 @@
     calls on the function loadData in mapbox_script and uses the user input as the arguments
     to create the map  -->
 
+    <!-- Places a youtube video on the page -->
+    <iframe width="420" height="315" id="video"></iframe>
+
+    <!-- script that puts together the youtube link and gives the iframe its video source -->
+    <script>
+        let youTubeBaseLink = "https://www.youtube.com/embed/"
+        let youtubeVideoLink = youTubeBaseLink + {{videoID|tojson}}
+        console.log(youtubeVideoLink)
+        let pageVideo = document.getElementById('video')
+        pageVideo.setAttribute("src",youtubeVideoLink)
+    </script>
+
 </body>
 </html>

@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request  # NOT the same as requests
-from location import get_location
+from location import location_main
+from YouTubeAPI import youtubeAPI_request
 
 app = Flask(__name__)
 
@@ -16,5 +17,7 @@ def get_mapbox_map():
 
     country = request.args.get('country')
 
-    return render_template('mapbox_map.html', city=city, country=country, state=state)
+    videoID = str(youtubeAPI_request(city, country))
+
+    return render_template('mapbox_map.html', city=city, country=country, state=state, videoID=videoID)
 
