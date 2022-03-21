@@ -35,6 +35,13 @@
     calls on the function loadData in mapbox_script and uses the user input as the arguments
     to create the map  -->
 
+    <label>Enter a search term:</label>
+    <input name="search_term" id="search_input">
+
+    <script src="{{url_for('static', filename='yelp_script.js')}}"></script>
+
+    <script>loadData( {{ search_term|tojson }} )</script>
+
     <!-- Places a youtube video on the page -->
     <iframe width="420" height="315" id="video"></iframe>
 
