@@ -46,14 +46,6 @@ def yelp_interpreter(business_data):
                               business_names['location']['address1'],
                               business_names['location']['city'],
                               business_names['phone']])
-        # print("{:25s}{:5.2f}{:>25s}{:>25s}{:>15}{:>25}{:>15f}".format(business_names['name'],
-        #                                                               business_names['rating'],
-        #                                                               business_names['location']['address1'],
-        #                                                               business_names['location']['city'],
-        #                                                               business_names['phone'],
-        #                                                               business_names['review_count'],
-        #                                                               business_names['coordinates']['latitude']
-        #                                                               ))
     return business_list
 
 #
