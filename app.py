@@ -28,6 +28,6 @@ def get_mapbox_map():
     return render_template('mapbox_map.html', city=city, country=country, state=state, videoID=videoID)
 ## , yelpID = yelpID
 
-@app.route('/bookmarks')
+@app.route('/get_bookmarks')
 def bookmark_page():
     return render_template('bookmark.html')
