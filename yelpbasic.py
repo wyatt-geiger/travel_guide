@@ -26,6 +26,7 @@ Parameter = {
         'location': location,
         'radius': radius,
         'limit': limit
+
        
         }
 
@@ -39,8 +40,13 @@ business_data = response.json()
 
 for businen_names in business_data["businesses"]:  # show only the business names 
         # print(businen_names['name'])  #show only the business names s
-        print("{:25s}{:5.2f}{:>25s}{:>25s}{:>15}{:>25}{:>15f}".format(businen_names['name'],businen_names['rating'],businen_names['location']['address1'],
-        businen_names['location']['city'],businen_names['phone'],businen_names['review_count'],businen_names['coordinates']['latitude']
+        print("{:25s}{:5.2f}{:>25s}{:>25s}{:>15}{:>25}{:>15f}".format(businen_names['name'],
+        businen_names['rating'],
+        businen_names['location']['address1'],
+        businen_names['location']['city'],
+        businen_names['phone'],
+        businen_names['review_count'],
+        businen_names['coordinates']['latitude']
         ))
         
 

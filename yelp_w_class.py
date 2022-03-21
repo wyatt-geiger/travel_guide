@@ -42,15 +42,21 @@ class Yelp:
                 if len(self.business_data)==0:
                         print("NO DATA FOUND")
                 # else:
-                try:
                
-                        for businen_names in self.business_data["businesses"]:  # show only the business names 
-                        # print(businen_names['name'])  #show only the business names s
-                                print("{:35s}{:5.2f}{:>25s}{:>25s}".format(businen_names['name'],businen_names['rating'],businen_names['location']['address1'],businen_names['location']['city'],
-                                businen_names['price'],businen_names['phone']))
-
-                except:
-                        print('SOME ERROR OCCURED ')
+               
+                for businen_names in self.business_data["businesses"]:  # show only the business  
+                
+                        print("{:35s}{:5.2f}{:>25s}{:>25s}".format(businen_names['name'],
+                        
+                        businen_names['location']['address1'],
+                        businen_names['location']['city'],
+                        businen_names['phone'],
+                        businen_names['rating'],
+                        businen_names['review_count'],
+                        businen_names['coordinates']['latitude']
+                        ))
+        
+                # print('SOME ERROR OCCURED ')
 
 
 y=Yelp()
