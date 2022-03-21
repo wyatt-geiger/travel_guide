@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request  # NOT the same as requests
 from location import location_main
 from YouTubeAPI import youtubeAPI_request
+from yelpbasic import business_data
 
 app = Flask(__name__)
 
@@ -18,6 +19,11 @@ def get_mapbox_map():
     country = request.args.get('country')
 
     videoID = str(youtubeAPI_request(city, country))
+    
+    yelpID =  str(business_data)
 
-    return render_template('mapbox_map.html', city=city, country=country, state=state, videoID=videoID)
+
+   
+
+    return render_template('mapbox_map.html', city=city, country=country, state=state, videoID=videoID, yelpID = yelpID),
 

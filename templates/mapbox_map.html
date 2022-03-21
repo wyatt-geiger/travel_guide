@@ -29,11 +29,39 @@
 
     <!-- imports mapbox_script.js -->
     <script src="{{url_for('static', filename='mapbox_script.js')}}"></script>
+    
 
-    <script>loadData( {{ city|tojson }}, {{ state|tojson }}, {{ country|tojson }} )</script>
+    <script async defer src="yelp.js"></script>
+
+    <table class="table table-bordered"  id="tabdata" style="margin-top: 90px" >
+   
+        <tr>
+          
+          <th>Businnes Name </th>
+          <th>Adress</th>
+          <th>City</th>
+          <th>Telphone</th>
+          <th>Rating</th>
+          <th>Distance</th>
+
+
+  
+        </tr>
+
+        <label>Enter </label>
+        
+
+        <label>Enter a state (if country is United States):</label>
+        <input name="state" id="state_input">
+
+     
+    </table>
+
+    <script>loadData( {{ city|tojson}}, {{ state|tojson }}, {{ country|tojson }} )</script>
     <!-- although this code appears to be erroring, the program functions as intended. This line
     calls on the function loadData in mapbox_script and uses the user input as the arguments
     to create the map  -->
+
 
     <!-- Places a youtube video on the page -->
     <iframe width="420" height="315" id="video"></iframe>
@@ -45,7 +73,16 @@
         console.log(youtubeVideoLink)
         let pageVideo = document.getElementById('video')
         pageVideo.setAttribute("src",youtubeVideoLink)
+    
     </script>
+
+
+         
+    
+
+
+       
+
 
 </body>
 </html>
