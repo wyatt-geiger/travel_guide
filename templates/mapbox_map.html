@@ -9,18 +9,12 @@
     
     <!-- webpage title -->
     <title>Mapbox Test</title>
-
-    <!-- this style tag modifies the overall map element. margin:0 auto aligns the map in the center -->
-    <style>
-        #map {
-            height: 50vh;
-            width: 50vw;
-            margin:0 auto;
-        }
-    </style>
     
     <!--- imports the mapbox SDK script -->
     <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mapbox_map_style.css') }}">
+    <!-- imports stylesheet -->
     
 </head>
 <body>
@@ -36,7 +30,7 @@
     to create the map  -->
 
     <!-- creates a table for yelp data to be put into -->
-    <table class="table table-bordered"  id="tabdata" style="margin-top: 90px" >
+    <table class="table table-bordered"  id="tabdata">
    
         <tr id="yelp_table">
             <th>Business Name </th>
@@ -48,8 +42,8 @@
         <!-- handles creating a loop to put all data into the table-->
          {% for name, rating, address, city, telephone in yelpID %}
 
-        <tr>
-            <th> {{ name }} </th>
+        <tr id="test">
+            <td> {{ name }} </td>
             <td> {{ rating }} </td>
             <td> {{ address }} </td>
             <td> {{ city }} </td>
