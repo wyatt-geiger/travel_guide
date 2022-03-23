@@ -4,27 +4,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>Welcome Page</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- the line above introduces bootstrap to the program -->
     
-    <title>Project 4 Working Title</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='homepage_style.css') }}">
+    <!--- imports style sheet -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Qwigley&display=swap" rel="stylesheet">
+    <!-- lines 15-17 introduces a font that is used for the header of the body -->
     
 </head>
 <body>
 
-    <h1>Welcome Page</h1>
+    <h1>Globe Trekker</h1>
     
     <form method="GET" action="get_map">
 
         <label>Enter a city:</label>
-        <input name="city" id="city_input">
+        <br><input name="city" id="input_box"></br>
 
-        <label>Enter a state (if country is United States):</label>
-        <input name="state" id="state_input">
+        <label>Enter a state*:</label>
+        <br><input name="state" id="input_box"></br>
 
         <label>Enter a country:</label>
-        <input name="country" id="country_input">
+        <br><input name="country" id="input_box"></br>
 
-        <button type="submit">Go!</button>
+        <label>What would you like to look for?</label>
+        <br><input name="searchTerm" id="input_box"><br>
+
+        <br><button id="submit_button" type="submit">Go!</button></br>
+
+        <!-- labels above ask for user input. disclaimer about the state input is below -->
+
+        <p id="optional_state">*Optional, only for United States</p>
 
     </form>
     
