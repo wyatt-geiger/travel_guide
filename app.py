@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request  # NOT the same as requests
 from location import location_main
 from YouTubeAPI import youtubeAPI_request
+import bookmark_schema
 ## from yelpbasic import business_data
 
 app = Flask(__name__)
@@ -30,4 +31,9 @@ def get_mapbox_map():
 
 @app.route('/get_bookmarks')
 def bookmark_page():
-    return render_template('bookmark.html')
+
+    bookmark_schema.create_table()
+
+    bookmark_data = bookmark_schema.display_all_data()
+
+    return render_template('bookmark.html', bookmark_data=bookmark_data)
