@@ -1,7 +1,7 @@
 import requests
 from pprint import pprint
 
-from key import my_key
+from key import yelp_key
 
 
 class Yelp:
@@ -14,7 +14,7 @@ class Yelp:
         # this method is to initialize the variables like headers,parameters and url 
         def readData(self):
                                 
-                API_key = my_key
+                API_key = yelp_key
                 self.url = 'https://api.yelp.com/v3/businesses/search'
                 self.headers = {
                         'Authorization': 'Bearer %s' % API_key,
