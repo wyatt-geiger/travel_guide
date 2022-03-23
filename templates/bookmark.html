@@ -10,9 +10,30 @@
     
     <h1>Bookmark Page</h1>
     
-    <p method="GET" action="get_bookmarks">
+    <table class="table table-bordered"  id="tabdata" style="margin-top: 90px" >
+   
+        <tr id="yelp_table">
+            <th>Delete?</th>
+            <th>Business Name</th>
+            <th>Rating</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>Telephone</th>
+        </tr>
+        <!-- handles creating a loop to put all data into the table-->
+         {% for name, rating, address, city, telephone in bookmark_data %}
 
-    </p>
+        <tr>
+            <td><input type="checkbox" id="delete_business"></td>
+            <th> {{ name }} </th>
+            <td> {{ rating }} </td>
+            <td> {{ address }} </td>
+            <td> {{ city }} </td>
+            <td> {{ telephone }} </td>
+        </tr>
+
+    {% endfor %}
+    </table>
 
 </body>
 </html>

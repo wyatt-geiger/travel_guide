@@ -39,7 +39,8 @@
     <table class="table table-bordered"  id="tabdata" style="margin-top: 90px" >
    
         <tr id="yelp_table">
-            <th>Business Name </th>
+            <th>Save?</th>
+            <th>Business Name</th>
             <th>Rating</th>
             <th>Address</th>
             <th>City</th>
@@ -48,7 +49,9 @@
         <!-- handles creating a loop to put all data into the table-->
          {% for name, rating, address, city, telephone in yelpID %}
 
+        
         <tr>
+            <td><input type="checkbox" id="add_business"></td>
             <th> {{ name }} </th>
             <td> {{ rating }} </td>
             <td> {{ address }} </td>

@@ -28,13 +28,14 @@ def get_mapbox_map():
 
     if searchTerm != "":
         yelpID = yelp_call(searchTerm, city, state, country)
+
+    bookmark_schema.create_table()
+    bookmark_schema.insert_data(yelpID)
         
     return render_template('mapbox_map.html', city=city, country=country, state=state, videoID=videoID, yelpID=yelpID)
   
 @app.route('/get_bookmarks')
 def bookmark_page():
-
-    bookmark_schema.create_table()
 
     bookmark_data = bookmark_schema.display_all_data()
 
