@@ -24,6 +24,15 @@
     
 </head>
 <body>
+
+    <form method="GET" action="/">
+        <button type="submit">Main Page</button>
+    </form>
+    <form method="GET" action="get_bookmarks">
+        <button type="submit">Bookmarks Page</button>
+    </form>
+
+
     <!--- places the map on the page -->
     <div id='map'></div>
 
@@ -39,7 +48,8 @@
     <table class="table table-bordered"  id="tabdata" style="margin-top: 90px" >
    
         <tr id="yelp_table">
-            <th>Business Name </th>
+            <th>Save?</th>
+            <th>Business Name</th>
             <th>Rating</th>
             <th>Address</th>
             <th>City</th>
@@ -49,16 +59,22 @@
          {% for name, rating, address, city, telephone in yelpID %}
 
         <tr>
+            <td><form method="POST" action="get_map">
+                <input type="hidden" name="name" value="{{name}}">
+                <input type="hidden" name="rating" value="{{rating}}">
+                <input type="hidden" name="address" value="{{address}}">
+                <input type="hidden" name="city" value="{{city}}">
+                <input type="hidden" name="telephone" value="{{telephone}}">
+                <button type="submit">+</button>
+            </form></td>
             <th> {{ name }} </th>
             <td> {{ rating }} </td>
             <td> {{ address }} </td>
             <td> {{ city }} </td>
             <td> {{ telephone }} </td>
         </tr>
-
     {% endfor %}
     </table>
-
 
     <!-- Places a youtube video on the page -->
     <iframe width="420" height="315" id="video"></iframe>
@@ -70,7 +86,6 @@
         console.log(youtubeVideoLink)
         let pageVideo = document.getElementById('video')
         pageVideo.setAttribute("src",youtubeVideoLink)
-    
     </script>
 
 </body>
