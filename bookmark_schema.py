@@ -14,7 +14,12 @@ def insert_data(yelpID):
             conn.execute(f'INSERT INTO bookmarks VALUES (?, ?, ?, ?, ?)', (name, rating, address, city, telephone))
     conn.close()
 
-def display_all_data(): # does not require a context manager because you are not committing any changes
+def delete_data(yelpID):
+    with sqlite3.connect(db) as conn:
+        conn.execute(f'DELETE FROM bookmarks WHERE Name = ?', [yelpID])
+    conn.close()
+
+def display_all_data():
     
     bookmark_list = []
     
