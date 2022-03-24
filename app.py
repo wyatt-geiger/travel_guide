@@ -12,36 +12,37 @@ def homepage():
     return render_template('index.html')
 
 
-@app.route('/get_map', methods=['GET', 'POST'])
+@app.route('/get_map', methods=['GET'])
 def get_mapbox_map():
 
-    if request.method == 'GET':
+    city = request.args.get('city')
 
-        city = request.args.get('city')
+    state = request.args.get('state')
 
-        state = request.args.get('state')
+    country = request.args.get('country')
 
-        country = request.args.get('country')
+    searchTerm = request.args.get('searchTerm')
 
-        searchTerm = request.args.get('searchTerm')
+    videoID = str(youtubeAPI_request(city, country))
 
-        videoID = str(youtubeAPI_request(city, country))
-
-        if searchTerm != "":
-            yelpID = yelp_call(searchTerm, city, state, country)
-        
-        return render_template('mapbox_map.html', city=city, country=country, state=state, videoID=videoID, yelpID=yelpID)
+    if searchTerm != "":
+        yelpID = yelp_call(searchTerm, city, state, country)
     
-    else:
-        name = request.form.get('name')
-        rating = request.form.get('rating')
-        address = request.form.get('address')
-        business_city = request.form.get('city')
-        telephone = request.form.get('telephone')
+    return render_template('mapbox_map.html', city=city, country=country, state=state, videoID=videoID, yelpID=yelpID)
+        
 
-        bookmark_schema.insert_data(name, rating, address, business_city, telephone)
-  
-        return redirect(request.referrer)
+@app.route('/get_map', methods=['POST'])
+def submit_post():
+    name = request.form.get('name')
+    rating = request.form.get('rating')
+    address = request.form.get('address')
+    business_city = request.form.get('city')
+    telephone = request.form.get('telephone')
+
+    bookmark_schema.insert_data(name, rating, address, business_city, telephone)
+
+    return redirect(request.referrer)
+
 
 @app.route('/get_bookmarks', methods=['GET', 'POST'])
 def bookmark_page():
