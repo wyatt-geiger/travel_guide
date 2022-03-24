@@ -47,7 +47,6 @@ def yelp_interpreter(business_data):
                               business_names['location']['city'],
                               business_names['phone']])
     return business_list
-
 #
 # for businen_names in business_data["businesses"]:  # show only the business names
 #     # print(businen_names['name'])  #show only the business names s
