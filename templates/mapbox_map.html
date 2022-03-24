@@ -30,7 +30,7 @@
     <!-- imports mapbox_script.js -->
     <script src="{{url_for('static', filename='mapbox_script.js')}}"></script>
     
-    <script>loadData( {{ city|tojson}}, {{ state|tojson }}, {{ country|tojson }} )</script>
+    <script>loadData( {{ city|tojson}}, {{ state|tojson }}, {{ country|tojson }}, {{ yelpID|tojson }}, {{ map_box_key|tojson }} )</script>
     <!-- although this code appears to be erroring, the program functions as intended. This line
     calls on the function loadData in mapbox_script and uses the user input as the arguments
     to create the map  -->
@@ -46,7 +46,7 @@
             <th>Telephone</th>
         </tr>
         <!-- handles creating a loop to put all data into the table-->
-         {% for name, rating, address, city, telephone in yelpID %}
+         {% for name, rating, address, city, telephone, latitude, longitude in yelpID %}
 
         <tr>
             <th> {{ name }} </th>
@@ -56,7 +56,7 @@
             <td> {{ telephone }} </td>
         </tr>
 
-    {% endfor %}
+        {% endfor %}
     </table>
 
 

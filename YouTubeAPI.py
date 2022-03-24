@@ -26,7 +26,6 @@ def youtubeAPI_request(city, country):
         maxResults="5",  # This can be changed to give different amounts of videos per search
     )
     response = request.execute()
-    print(response)
 
     videoID = getVideoID(response)
 
@@ -41,7 +40,6 @@ def get_key():
 def get_location(city, country):
     longitude, latitude = location_main(city, country)
     coordinates = f'{latitude},{longitude}'
-    print(coordinates)
     return coordinates
 
 
@@ -51,7 +49,7 @@ def get_radius():
 
 
 def subject_line(city):
-    subject = f'tourist guide'
+    subject = f'{city} tourist guide'
     return subject
 
 

@@ -1,8 +1,8 @@
 // This is the script that creates the mapbox map on the page using user input
 
-function loadData(city, state, country) {
+function loadData(city, state, country, yelpID, map_box_key) {
 
-    mapboxgl.accessToken = 'pk.eyJ1IjoibWFuZGlibGVjbGF3IiwiYSI6ImNrNmxpcWJ4MzBhamozZXBiZzVoNm11cmgifQ.lt7or9puZArJpANdrnIrUg';
+    mapboxgl.accessToken = map_box_key;
     
     const mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
 
