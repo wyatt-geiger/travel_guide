@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmarks</title>
+</head>
+<body>
+    
+    <form method="GET" action="/">
+        <button type="submit">Main Page</button>
+    </form>
+    <form method="GET" action="get_map">
+        <button type="submit">Back</button>
+    </form>
+
+    <h1>Bookmark Page</h1>
+    
+    <table class="table table-bordered"  id="tabdata" style="margin-top: 90px" >
+   
+        <tr id="yelp_table">
+            <th>Delete?</th>
+            <th>Business Name</th>
+            <th>Rating</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>Telephone</th>
+        </tr>
+        <!-- handles creating a loop to put all data into the table-->
+        {% for name, rating, address, city, telephone in bookmark_data %}
+        <tr name="bookmark_row">
+            <td><form method="POST" action="get_bookmarks">
+                <input type="hidden" name="name" value="{{name}}">
+                <button type="submit">-</button>
+            </form></td>
+            <th> {{ name }} </th>
+            <td> {{ rating }} </td>
+            <td> {{ address }} </td>
+            <td> {{ city }} </td>
+            <td> {{ telephone }} </td>
+
+        </tr>
+        {% endfor %}
+        </form>
+    </table>
+
+</body>
+</html>

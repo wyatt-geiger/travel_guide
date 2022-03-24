@@ -27,6 +27,13 @@
 </head>
 <body>
 
+    <form method="GET" action="/">
+        <button type="submit">Main Page</button>
+    </form>
+    <form method="GET" action="get_bookmarks">
+        <button type="submit">Bookmarks Page</button>
+    </form>
+  
     <h1 id="city_result">Showing results for: {{ searchTerm }} in {{ city }}</h1>
 
     <!--- places the map on the page -->
@@ -44,7 +51,8 @@
     <table class="table" id="tabdata">
    
         <tr id="yelp_table">
-            <th>Business Name </th>
+            <th>Save?</th>
+            <th>Business Name</th>
             <th>Rating</th>
             <th>Address</th>
             <th>City</th>
@@ -52,15 +60,22 @@
         </tr>
         <!-- handles creating a loop to put all data into the table-->
          {% for name, rating, address, city, telephone in yelpID %}
-
+      
         <tr id="yelp_data">
-            <td> {{ name }} </td>
+            <td><form method="POST" action="get_map">
+                <input type="hidden" name="name" value="{{name}}">
+                <input type="hidden" name="rating" value="{{rating}}">
+                <input type="hidden" name="address" value="{{address}}">
+                <input type="hidden" name="city" value="{{city}}">
+                <input type="hidden" name="telephone" value="{{telephone}}">
+                <button type="submit">+</button>
+            </form></td>
+            <th> {{ name }} </th>
             <td> {{ rating }}/5.0 </td>
             <td> {{ address }} </td>
             <td> {{ city }} </td>
             <td> {{ telephone }} </td>
         </tr>
-
     {% endfor %}
     </table>
 

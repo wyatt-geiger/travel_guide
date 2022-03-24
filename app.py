@@ -1,19 +1,31 @@
-from flask import Flask, render_template, request  # NOT the same as requests
+from tabnanny import check
+from flask import Flask, render_template, request, redirect
 from location import location_main
 from YouTubeAPI import youtubeAPI_request
 from yelpbasic import yelp_call
+import bookmark_schema
+from flask_caching import Cache
+
+config = {
+    "DEBUG": True,          # some Flask specific configs
+    "CACHE_TYPE": "SimpleCache",  # Flask-Caching related configs
+    "CACHE_DEFAULT_TIMEOUT": 300
+}
 
 app = Flask(__name__)
+
+app.config.from_mapping(config)
+cache = Cache(app)
 
 
 @app.route('/')
 def homepage():
     return render_template('index.html')
 
-
-@app.route('/get_map')
+  
+@app.route('/get_map', methods=['GET'])
+@cache.cached(timeout=50)
 def get_mapbox_map():
-    yelpID = ""
 
     city = request.args.get('city')
 
@@ -29,3 +41,31 @@ def get_mapbox_map():
         yelpID = yelp_call(searchTerm, city, state, country)
 
     return render_template('mapbox_map.html', city=city, country=country, state=state, yelpID=yelpID, searchTerm=searchTerm, videoID=videoID)
+        
+
+@app.route('/get_map', methods=['POST'])
+def submit_post():
+    name = request.form.get('name')
+    rating = request.form.get('rating')
+    address = request.form.get('address')
+    business_city = request.form.get('city')
+    telephone = request.form.get('telephone')
+
+    bookmark_schema.insert_data(name, rating, address, business_city, telephone)
+
+    return redirect(request.referrer)
+
+
+@app.route('/get_bookmarks', methods=['GET', 'POST'])
+def bookmark_page():
+
+    if request.method == 'POST':
+        name = request.form.get('name')
+        bookmark_schema.delete_data(name)
+        return redirect('/get_bookmarks')   # reload the bookmarks page, by default a get request. now without the deleted item
+        # todo error handling 
+
+    else:
+
+        bookmark_data = bookmark_schema.display_all_data()
+        return render_template('bookmark.html', bookmark_data=bookmark_data)
