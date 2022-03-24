@@ -5,6 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookmarks</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- the line above introduces bootstrap to the program -->
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bookmarks_style.css') }}">
+    <!-- imports stylesheet -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,600" rel="stylesheet">
+    <!-- imports font style -->
+
 </head>
 <body>
     
@@ -15,7 +27,7 @@
         <button type="submit">Back</button>
     </form>
 
-    <h1>Bookmark Page</h1>
+    <h1>Your Saved Bookmarks</h1>
     
     <table class="table table-bordered"  id="tabdata" style="margin-top: 90px" >
    
@@ -29,13 +41,13 @@
         </tr>
         <!-- handles creating a loop to put all data into the table-->
         {% for name, rating, address, city, telephone in bookmark_data %}
-        <tr name="bookmark_row">
+        <tr id="yelp_data">
             <td><form method="POST" action="get_bookmarks">
                 <input type="hidden" name="name" value="{{name}}">
                 <button type="submit">-</button>
             </form></td>
             <th> {{ name }} </th>
-            <td> {{ rating }} </td>
+            <td> {{ rating }}/5.0 </td>
             <td> {{ address }} </td>
             <td> {{ city }} </td>
             <td> {{ telephone }} </td>
