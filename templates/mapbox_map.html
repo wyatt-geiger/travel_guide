@@ -24,6 +24,15 @@
     
 </head>
 <body>
+
+    <form method="GET" action="/">
+        <button type="submit">Main Page</button>
+    </form>
+    <form method="GET" action="get_bookmarks">
+        <button type="submit">Bookmarks Page</button>
+    </form>
+
+
     <!--- places the map on the page -->
     <div id='map'></div>
 
@@ -64,7 +73,6 @@
             <td> {{ city }} </td>
             <td> {{ telephone }} </td>
         </tr>
-
     {% endfor %}
     </table>
 
@@ -78,7 +86,6 @@
         console.log(youtubeVideoLink)
         let pageVideo = document.getElementById('video')
         pageVideo.setAttribute("src",youtubeVideoLink)
-    
     </script>
 
 </body>
