@@ -1,0 +1,57 @@
+body {
+    background-image: url('city_skyline2.jpg');
+    background-repeat: no-repeat;
+}
+
+h1 {
+    color: rgba(255, 255, 255, 0.925);
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 300%;
+    font-family: 'Lora', serif;
+    text-shadow: 2px 2px black;
+}
+
+#map {
+    height: 35vh;
+    width: 35vw;
+    margin:0 auto;
+    border-style: solid;
+    border-color: black;
+    border-width: 5px;
+    margin-top: 35px;
+}
+
+#tabdata {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    text-align: center;
+    width: 60%;
+    background-image: linear-gradient(to right, purple , rgba(0, 0, 255, 0.705));
+    border-style: solid;
+    border-color: black;
+    border-width: 5px;
+}
+
+#yelp_table {
+    font-size: 150%;    
+}
+
+iframe {
+    margin:0 auto;
+    display:block;
+    margin-top: 40px;
+}
+
+th {
+    color: rgba(255, 255, 255, 0.822);
+    font-weight: bold;
+}
+
+#yelp_data {
+    color: rgba(255, 255, 255, 0.822);
+    font-weight: bold;
+    font-size: 100%;
+}

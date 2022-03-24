@@ -1,0 +1,40 @@
+body {
+    background-image: url('beach2.jpg');
+    background-repeat: no-repeat;
+}
+
+h1 {
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 300%;
+    font-family: 'Lora', serif;
+    text-shadow: 2px 2px rgba(255, 255, 255, 0.925);;
+}
+
+#tabdata {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 60%;
+    background-image: linear-gradient(to right, purple , rgba(0, 0, 255, 0.705));
+    border-style: solid;
+    border-color: black;
+    border-width: 5px;
+}
+
+#yelp_table {
+    font-size: 150%;    
+}
+
+th {
+    color: rgba(255, 255, 255, 0.822);
+    font-weight: bold;
+}
+
+#yelp_data {
+    color: rgba(255, 255, 255, 0.822);
+    font-weight: bold;
+    font-size: 100%;
+}

@@ -17,7 +17,7 @@ fetch(url) // fetching the url and returns a promise
     .then( (res) => res.json())
         .then( (businesses) => {
         let businessesdata = businesses // this will pull the api code that will display on the table 
-        //get specific data  value from API
+        //get specific data value from API
         let term =  businen_names.name
 
 

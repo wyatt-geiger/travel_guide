@@ -8,22 +8,34 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet'/>
     
     <!-- webpage title -->
-    <title>Mapbox Test</title>
-
-    <!-- this style tag modifies the overall map element. margin:0 auto aligns the map in the center -->
-    <style>
-        #map {
-            height: 50vh;
-            width: 50vw;
-            margin:0 auto;
-        }
-    </style>
+    <title>{{ searchTerm }}</title>
     
     <!--- imports the mapbox SDK script -->
     <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- the line above introduces bootstrap to the program -->
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mapbox_map_style.css') }}">
+    <!-- imports stylesheet -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,600" rel="stylesheet">
+    <!-- imports font style -->
     
 </head>
 <body>
+
+    <form method="GET" action="/">
+        <button type="submit">Main Page</button>
+    </form>
+    <form method="GET" action="get_bookmarks">
+        <button type="submit">Bookmarks Page</button>
+    </form>
+  
+    <h1>Showing results for: {{ searchTerm }} in {{ city }}</h1>
+
     <!--- places the map on the page -->
     <div id='map'></div>
 
@@ -36,29 +48,35 @@
     to create the map  -->
 
     <!-- creates a table for yelp data to be put into -->
-    <table class="table table-bordered"  id="tabdata" style="margin-top: 90px" >
+    <table class="table" id="tabdata">
    
         <tr id="yelp_table">
-            <th>Business Name </th>
+            <th>Save?</th>
+            <th>Business Name</th>
             <th>Rating</th>
             <th>Address</th>
             <th>City</th>
             <th>Telephone</th>
         </tr>
         <!-- handles creating a loop to put all data into the table-->
-         {% for name, rating, address, city, telephone, latitude, longitude in yelpID %}
 
-        <tr>
+        {% for name, rating, address, city, telephone, latitude, longitude in yelpID %} 
+        <tr id="yelp_data">
+            <td><form method="POST" action="get_map">
+                <input type="hidden" name="name" value="{{name}}">
+                <input type="hidden" name="rating" value="{{rating}}">
+                <input type="hidden" name="address" value="{{address}}">
+                <input type="hidden" name="city" value="{{city}}">
+                <input type="hidden" name="telephone" value="{{telephone}}">
+                <button type="submit">+</button>
+            </form></td>
             <th> {{ name }} </th>
-            <td> {{ rating }} </td>
+            <td> {{ rating }}/5.0 </td>
             <td> {{ address }} </td>
             <td> {{ city }} </td>
             <td> {{ telephone }} </td>
         </tr>
-
         {% endfor %}
-    </table>
-
 
     <!-- Places a youtube video on the page -->
     <iframe width="420" height="315" id="video"></iframe>
@@ -70,7 +88,6 @@
         console.log(youtubeVideoLink)
         let pageVideo = document.getElementById('video')
         pageVideo.setAttribute("src",youtubeVideoLink)
-
     </script>
 
 </body>

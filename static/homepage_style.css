@@ -10,6 +10,11 @@ body {
     font-weight: bold;
     font-size: 25px;
 }
+
+#bookmark_button {
+    text-align: left;
+    font-size: 16px;
+}
 /* adds style to the body, and uses Travel1.jpeg inside static folder as the background */
 
 label {
@@ -25,7 +30,7 @@ label {
 
 #input_box {
     height: 30px;
-    margin: 10px;
+    margin: 5px;
     text-align: center;
 }
 /* adds style to the input boxes */
