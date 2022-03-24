@@ -27,7 +27,7 @@
                 <input type="hidden" name="name" value="{{name}}">
                 <button type="submit">Delete</button>
             </form></td>
-            <th name="name"> {{ name }} </th>
+            <th> {{ name }} </th>
             <td> {{ rating }} </td>
             <td> {{ address }} </td>
             <td> {{ city }} </td>
@@ -37,10 +37,6 @@
         {% endfor %}
         </form>
     </table>
-
-    <form method="POST" name="delete_form" action="get_bookmarks">      
-        <input type="submit" value="Delete All Selected" class="btn btn-primary"> 
-    </form>
 
 </body>
 </html>

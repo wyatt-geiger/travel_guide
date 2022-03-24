@@ -49,9 +49,15 @@
         <!-- handles creating a loop to put all data into the table-->
          {% for name, rating, address, city, telephone in yelpID %}
 
-        
         <tr>
-            <td><input type="checkbox" id="add_business"></td>
+            <td><form method="POST" action="get_map">
+                <input type="hidden" name="name" value="{{name}}">
+                <input type="hidden" name="rating" value="{{rating}}">
+                <input type="hidden" name="address" value="{{address}}">
+                <input type="hidden" name="city" value="{{city}}">
+                <input type="hidden" name="telephone" value="{{telephone}}">
+                <button type="submit">Save</button>
+            </form></td>
             <th> {{ name }} </th>
             <td> {{ rating }} </td>
             <td> {{ address }} </td>

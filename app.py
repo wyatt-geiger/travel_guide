@@ -12,34 +12,42 @@ def homepage():
     return render_template('index.html')
 
 
-@app.route('/get_map')
+@app.route('/get_map', methods=['GET', 'POST'])
 def get_mapbox_map():
 
-    city = request.args.get('city')
+    if request.method == 'GET':
 
-    state = request.args.get('state')
+        city = request.args.get('city')
 
-    country = request.args.get('country')
+        state = request.args.get('state')
 
-    searchTerm = request.args.get('searchTerm')
+        country = request.args.get('country')
 
-    videoID = str(youtubeAPI_request(city, country))
+        searchTerm = request.args.get('searchTerm')
 
-    if searchTerm != "":
-        yelpID = yelp_call(searchTerm, city, state, country)
+        videoID = str(youtubeAPI_request(city, country))
 
-    #bookmark_schema.create_table()
-    #bookmark_schema.insert_data(yelpID)
+        if searchTerm != "":
+            yelpID = yelp_call(searchTerm, city, state, country)
         
-    return render_template('mapbox_map.html', city=city, country=country, state=state, videoID=videoID, yelpID=yelpID)
+        return render_template('mapbox_map.html', city=city, country=country, state=state, videoID=videoID, yelpID=yelpID)
+    
+    else:
+        name = request.form.get('name')
+        rating = request.form.get('rating')
+        address = request.form.get('address')
+        business_city = request.form.get('city')
+        telephone = request.form.get('telephone')
+
+        bookmark_schema.insert_data(name, rating, address, business_city, telephone)
   
+        return redirect(request.referrer)
 
 @app.route('/get_bookmarks', methods=['GET', 'POST'])
 def bookmark_page():
 
     if request.method == 'POST':
         name = request.form.get('name')
-        print(name)
         bookmark_schema.delete_data(name)
         return redirect('/get_bookmarks')   # reload the bookmarks page, by default a get request. now without the deleted item
         # todo error handling 
