@@ -42,7 +42,7 @@
     <!-- imports mapbox_script.js -->
     <script src="{{url_for('static', filename='mapbox_script.js')}}"></script>
     
-    <script>loadData( {{ city|tojson}}, {{ state|tojson }}, {{ country|tojson }} )</script>
+    <script>loadData( {{ city|tojson}}, {{ state|tojson }}, {{ country|tojson }}, {{ yelpID|tojson }}, {{ map_box_key|tojson }} )</script>
     <!-- although this code appears to be erroring, the program functions as intended. This line
     calls on the function loadData in mapbox_script and uses the user input as the arguments
     to create the map  -->
@@ -59,8 +59,8 @@
             <th>Telephone</th>
         </tr>
         <!-- handles creating a loop to put all data into the table-->
-         {% for name, rating, address, city, telephone in yelpID %}
-      
+
+        {% for name, rating, address, city, telephone, latitude, longitude in yelpID %} 
         <tr id="yelp_data">
             <td><form method="POST" action="get_map">
                 <input type="hidden" name="name" value="{{name}}">
@@ -76,8 +76,7 @@
             <td> {{ city }} </td>
             <td> {{ telephone }} </td>
         </tr>
-    {% endfor %}
-    </table>
+        {% endfor %}
 
     <!-- Places a youtube video on the page -->
     <iframe width="420" height="315" id="video"></iframe>

@@ -2,7 +2,9 @@ import googleapiclient.discovery
 import googleapiclient.errors
 from location import location_main
 from key import youtube_key
+
 '''A program for sending a search request to the YouTube API'''
+
 
 def youtubeAPI_request(city, country):
     api_service_name = "youtube"
@@ -29,22 +31,27 @@ def youtubeAPI_request(city, country):
 
     return videoID
 
+
 def get_key():
     key = youtube_key
     return key
+
 
 def get_location(city, country):
     longitude, latitude = location_main(city, country)
     coordinates = f'{latitude},{longitude}'
     return coordinates
 
+
 def get_radius():
     radius = "10mi"
     return radius
 
+
 def subject_line(city):
     subject = f'{city} tourist guide'
     return subject
+
 
 def getVideoID(youtubeData):
     y = youtubeData['items']
