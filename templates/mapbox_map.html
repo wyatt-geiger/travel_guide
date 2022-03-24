@@ -8,7 +8,7 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet'/>
     
     <!-- webpage title -->
-    <title>Mapbox Test</title>
+    <title>{{ searchTerm }}</title>
     
     <!--- imports the mapbox SDK script -->
     <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
@@ -21,7 +21,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,600&family=Qwigley&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,600" rel="stylesheet">
     <!-- imports font style -->
     
 </head>
@@ -34,7 +34,7 @@
         <button type="submit">Bookmarks Page</button>
     </form>
   
-    <h1 id="city_result">Showing results for: {{ searchTerm }} in {{ city }}</h1>
+    <h1>Showing results for: {{ searchTerm }} in {{ city }}</h1>
 
     <!--- places the map on the page -->
     <div id='map'></div>
