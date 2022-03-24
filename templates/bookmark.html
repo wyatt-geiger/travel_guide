@@ -23,12 +23,16 @@
         <!-- handles creating a loop to put all data into the table-->
         {% for name, rating, address, city, telephone in bookmark_data %}
         <tr name="bookmark_row">
-            <td><form method="POST" action="get_bookmarks"><input type="checkbox" name="check"></form></td>
+            <td><form method="POST" action="get_bookmarks">
+                <input type="hidden" name="name" value="{{name}}">
+                <button type="submit">Delete</button>
+            </form></td>
             <th name="name"> {{ name }} </th>
             <td> {{ rating }} </td>
             <td> {{ address }} </td>
             <td> {{ city }} </td>
             <td> {{ telephone }} </td>
+
         </tr>
         {% endfor %}
         </form>
