@@ -1,3 +1,18 @@
+body {
+    background-image: url('city_skyline2.jpg');
+    background-repeat: no-repeat;
+}
+
+#city_result {
+    color: rgba(255, 255, 255, 0.925);
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 300%;
+    font-family: 'Lora', serif;
+    text-shadow: 2px 2px black;
+}
+
 #map {
     height: 35vh;
     width: 35vw;
@@ -5,6 +20,7 @@
     border-style: solid;
     border-color: black;
     border-width: 5px;
+    margin-top: 35px;
 }
 
 #tabdata {
@@ -12,7 +28,11 @@
     margin-right: auto;
     margin-top: 40px;
     text-align: center;
-    width: 50%;
+    width: 60%;
+    background-image: linear-gradient(to right, purple , rgba(0, 0, 255, 0.705));
+    border-style: solid;
+    border-color: black;
+    border-width: 5px;
 }
 
 #yelp_table {
@@ -26,14 +46,14 @@ iframe {
 }
 
 th {
-    border-style: solid;
-    border-color: black;
-    border-width: 3px;
-    padding: 10px;
+    color: rgba(255, 255, 255, 0.822);
+    font-weight: bold;
 }
 
-td {
-
+#yelp_data {
+    color: rgba(255, 255, 255, 0.822);
+    font-weight: bold;
+    font-size: 100%;
 }
 
 #search_term{

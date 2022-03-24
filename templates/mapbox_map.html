@@ -13,11 +13,22 @@
     <!--- imports the mapbox SDK script -->
     <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- the line above introduces bootstrap to the program -->
+
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mapbox_map_style.css') }}">
     <!-- imports stylesheet -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,600&family=Qwigley&display=swap" rel="stylesheet">
+    <!-- imports font style -->
     
 </head>
 <body>
+
+    <h1 id="city_result">Showing results for: {{ searchTerm }} in {{ city }}</h1>
+
     <!--- places the map on the page -->
     <div id='map'></div>
 
@@ -28,8 +39,6 @@
     <!-- although this code appears to be erroring, the program functions as intended. This line
     calls on the function loadData in mapbox_script and uses the user input as the arguments
     to create the map  -->
-
-    <p id="search_term">Search term: {{ searchTerm }}</p>
 
     <!-- creates a table for yelp data to be put into -->
     <table class="table" id="tabdata">
@@ -44,9 +53,9 @@
         <!-- handles creating a loop to put all data into the table-->
          {% for name, rating, address, city, telephone in yelpID %}
 
-        <tr>
+        <tr id="yelp_data">
             <td> {{ name }} </td>
-            <td> {{ rating }} </td>
+            <td> {{ rating }}/5.0 </td>
             <td> {{ address }} </td>
             <td> {{ city }} </td>
             <td> {{ telephone }} </td>
@@ -55,9 +64,8 @@
     {% endfor %}
     </table>
 
-
     <!-- Places a youtube video on the page -->
-    <div id="youtube_vid"><iframe width="420" height="315" id="video"></iframe></div>
+    <iframe width="420" height="315" id="video"></iframe>
 
     <!-- script that puts together the youtube link and gives the iframe its video source -->
     <script>
@@ -66,7 +74,6 @@
         console.log(youtubeVideoLink)
         let pageVideo = document.getElementById('video')
         pageVideo.setAttribute("src",youtubeVideoLink)
-
     </script>
 
 </body>
