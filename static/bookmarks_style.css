@@ -18,7 +18,7 @@ h1 {
     margin-right: auto;
     text-align: center;
     width: 60%;
-    background-image: linear-gradient(to right, purple , rgba(0, 0, 255, 0.705));
+    background-image: linear-gradient(to right, green, rgba(0, 225, 255, 0.705));
     border-style: solid;
     border-color: black;
     border-width: 5px;
