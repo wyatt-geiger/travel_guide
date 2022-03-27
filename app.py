@@ -8,7 +8,7 @@ from flask_caching import Cache
 from key import map_box_key
 
 config = {
-    "DEBUG": True,          # some Flask specific configs
+    "DEBUG": True,  # some Flask specific configs
     "CACHE_TYPE": "SimpleCache",  # Flask-Caching related configs
     "CACHE_DEFAULT_TIMEOUT": 300
 }
@@ -23,11 +23,10 @@ cache = Cache(app)
 def homepage():
     return render_template('index.html')
 
-  
+
 @app.route('/get_map', methods=['GET'])
 @cache.cached(timeout=50)
 def get_mapbox_map():
-
     city = request.args.get('city')
 
     state = request.args.get('state')
@@ -36,13 +35,16 @@ def get_mapbox_map():
 
     searchTerm = request.args.get('searchTerm')
 
-    videoID = str(youtubeAPI_request(city, country))
+    videoID = str(youtubeAPI_request(city, state, country))
 
     if searchTerm != "":
         yelpID = yelp_call(searchTerm, city, state, country)
+    else:
+        yelpID = ""
 
-    return render_template('mapbox_map.html', city=city, country=country, state=state, yelpID=yelpID, searchTerm=searchTerm, map_box_key=map_box_key, videoID=videoID)
-        
+    return render_template('mapbox_map.html', city=city, country=country, state=state, yelpID=yelpID,
+                           searchTerm=searchTerm, map_box_key=map_box_key, videoID=videoID)
+
 
 @app.route('/get_map', methods=['POST'])
 def submit_post():
@@ -59,11 +61,11 @@ def submit_post():
 
 @app.route('/get_bookmarks', methods=['GET', 'POST'])
 def bookmark_page():
-
     if request.method == 'POST':
         name = request.form.get('name')
         bookmark_schema.delete_data(name)
-        return redirect('/get_bookmarks')   # reload the bookmarks page, by default a get request. now without the deleted item
+        return redirect(
+            '/get_bookmarks')  # reload the bookmarks page, by default a get request. now without the deleted item
         # todo error handling 
 
     else:
