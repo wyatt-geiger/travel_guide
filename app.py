@@ -6,6 +6,7 @@ from yelpbasic import yelp_call
 import bookmark_schema
 from flask_caching import Cache
 from key import map_box_key
+from datetime import datetime
 
 config = {
     "DEBUG": True,  # some Flask specific configs
@@ -41,6 +42,12 @@ def get_mapbox_map():
         yelpID = yelp_call(searchTerm, city, state, country)
     else:
         yelpID = ""
+
+    page_data = {'city': city, 'state': state, 'country': country,
+                 'search': searchTerm, 'videoID': videoID, 'businesses': yelpID, 'created': datetime.now()}
+
+    cached_data = open('cached_data.json', 'a')
+    cached_data.write(str(page_data))
 
     return render_template('mapbox_map.html', city=city, country=country, state=state, yelpID=yelpID,
                            searchTerm=searchTerm, map_box_key=map_box_key, videoID=videoID)
