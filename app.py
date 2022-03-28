@@ -27,24 +27,27 @@ def homepage():
 @app.route('/get_map', methods=['GET'])
 @cache.cached(timeout=50)
 def get_mapbox_map():
-    city = request.args.get('city')
 
-    state = request.args.get('state')
+    try:
+        city = request.args.get('city')
 
-    country = request.args.get('country')
+        state = request.args.get('state')
 
-    searchTerm = request.args.get('searchTerm')
+        country = request.args.get('country')
 
-    videoID = str(youtubeAPI_request(city, state, country))
+        searchTerm = request.args.get('searchTerm')
 
-    if searchTerm != "":
-        yelpID = yelp_call(searchTerm, city, state, country)
-    else:
-        yelpID = ""
+        videoID = str(youtubeAPI_request(city, country))
 
-    return render_template('mapbox_map.html', city=city, country=country, state=state, yelpID=yelpID,
-                           searchTerm=searchTerm, map_box_key=map_box_key, videoID=videoID)
-
+        if searchTerm != "":
+            yelpID = yelp_call(searchTerm, city, state, country)
+        else:
+            yelpID =''
+    
+        return render_template('mapbox_map.html', city=city, country=country, state=state, yelpID=yelpID, searchTerm=searchTerm, map_box_key=map_box_key, videoID=videoID)
+    
+    except:
+        return render_template('search_error.html')
 
 @app.route('/get_map', methods=['POST'])
 def submit_post():
@@ -61,14 +64,15 @@ def submit_post():
 
 @app.route('/get_bookmarks', methods=['GET', 'POST'])
 def bookmark_page():
-    if request.method == 'POST':
-        name = request.form.get('name')
-        bookmark_schema.delete_data(name)
-        return redirect(
-            '/get_bookmarks')  # reload the bookmarks page, by default a get request. now without the deleted item
-        # todo error handling 
 
-    else:
+    try:
+        if request.method == 'POST':
+            name = request.form.get('name')
+            bookmark_schema.delete_data(name)
+            return redirect('/get_bookmarks')   # reload the bookmarks page, by default a get request. now without the deleted item
 
-        bookmark_data = bookmark_schema.display_all_data()
-        return render_template('bookmark.html', bookmark_data=bookmark_data)
+        else:
+            bookmark_data = bookmark_schema.display_all_data()
+            return render_template('bookmark.html', bookmark_data=bookmark_data)
+    except:
+        return render_template('search_error.html')
