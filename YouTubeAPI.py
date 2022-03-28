@@ -6,10 +6,10 @@ from key import youtube_key
 '''A program for sending a search request to the YouTube API'''
 
 
-def youtubeAPI_request(city, country):
+def youtubeAPI_request(city, state, country):
     api_service_name = "youtube"
     api_version = "v3"
-    # These define which of google's apis (YouTube) and which version of the api (v3) we are using
+    # These define which of Google's apis (YouTube) and which version of the api (v3) we are using
 
     youtube = googleapiclient.discovery.build(api_service_name, api_version,
                                               developerKey=get_key())
@@ -17,13 +17,26 @@ def youtubeAPI_request(city, country):
 
     request = youtube.search().list(  # Here the YouTube search request in necessary
         part="snippet",  # Don't really know what this line does, but it's required
-        location=get_location(city, country),  # Here is where coordinates go.
+
+        # ---
+
+        # Originally I sent YouTube location data to specify where the video should be from. However, I found I was
+        # sometimes getting better results when not sending location data, as many videos didn't have location data
+        # at all. Below is the remnants of that.
+
+        # location=get_location(city, country),  # Here is where coordinates go.
         # example for formatting: 21.5922529,-158.1147114
-        locationRadius=get_radius(),  # radius around the location that will be searched for. Requires units
+        # locationRadius=get_radius(),  # radius around the location that will be searched for. Requires units
         # Example for formatting: 10mi
-        q=subject_line(city),  # This is where the equivalent to what you'd put into the search bar is put.
+
+        # ----
+
+        q=subject_line(city, state, country),  # This is where the equivalent to what you'd put into the search bar
+        # is put.
         type="video",
-        maxResults="5",  # This can be changed to give different amounts of videos per search
+        videoCategoryId=19,  # This sets it so only videos of the YouTube category "Travel & Events" show up
+        order="relevance",
+        maxResults="12",  # This can be changed to give different amounts of videos per search
     )
     response = request.execute()
 
@@ -44,13 +57,17 @@ def get_location(city, country):
 
 
 def get_radius():
-    radius = "10mi"
+    radius = "100mi"
     return radius
 
 
-def subject_line(city):
-    subject = f'{city} tourist guide'
-    return subject
+def subject_line(city, state, country):
+    if state != "":
+        subject = f'Things to do in {city} {state}'
+        return subject
+    else:
+        subject = f'Things to do in {city} {country}'
+        return subject
 
 
 def getVideoID(youtubeData):

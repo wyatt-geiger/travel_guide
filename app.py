@@ -8,7 +8,7 @@ from flask_caching import Cache
 from key import map_box_key
 
 config = {
-    "DEBUG": True,          # some Flask specific configs
+    "DEBUG": True,  # some Flask specific configs
     "CACHE_TYPE": "SimpleCache",  # Flask-Caching related configs
     "CACHE_DEFAULT_TIMEOUT": 300
 }
@@ -23,7 +23,7 @@ cache = Cache(app)
 def homepage():
     return render_template('index.html')
 
-  
+
 @app.route('/get_map', methods=['GET'])
 @cache.cached(timeout=50)
 def get_mapbox_map():
@@ -48,7 +48,6 @@ def get_mapbox_map():
     
     except:
         return render_template('search_error.html')
-        
 
 @app.route('/get_map', methods=['POST'])
 def submit_post():
