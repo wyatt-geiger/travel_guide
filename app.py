@@ -7,6 +7,7 @@ import bookmark_schema
 from flask_caching import Cache
 from key import map_box_key
 from datetime import datetime
+from datetime import timedelta
 
 config = {
     "DEBUG": True,  # some Flask specific configs
@@ -32,6 +33,9 @@ def get_mapbox_map():
 
     state = request.args.get('state')
 
+    if state is None:
+        state = ""
+
     country = request.args.get('country')
 
     searchTerm = request.args.get('searchTerm')
@@ -39,17 +43,18 @@ def get_mapbox_map():
     try:  # This will test to see if a file containing cache data already exists
         cache_data = open('cache_data.csv')
         cache_reader = csv.reader(cache_data)
-        print("cache opened")
+        clean_cache()  # Calls the function that will clean the catch of any old entries
         for row in cache_reader:
-            # this loop tests if the city, state, and country inputted by the user match any entries in the cache
-            if city + state + country == row[0] + row[1] + row[2]:
-                videoID = row[4]    # If a match is found, the youtube video from the cache is saved
+            if row:  # Prevents the program from crashing when encountering a blank line
+                # this loop tests if the city, state, and country inputted by the user match any entries in the cache
+                if city + state + country == row[0] + row[1] + row[2]:
+                    videoID = row[4]  # If a match is found, the youtube video from the cache is saved
 
-                if searchTerm == row[3]:  # if the search term also matches, then the cached yelp data is also saved
-                    yelpID = ast.literal_eval(row[5])
-                    # learned of ast from here: https://www.askpython.com/python/string/python-convert-string-to-list
-                    # The yelp data is saved as a list, within a csv file.
-                    # This is weird, and requires a weird solution (This ast thing) to make the list readable again.
+                    if searchTerm == row[3]:  # if the search term also matches, then the cached yelp data is also saved
+                        yelpID = ast.literal_eval(row[5])
+                        # learned of ast from here: https://www.askpython.com/python/string/python-convert-string-to-list
+                        # The yelp data is saved as a list, within a csv file.
+                        # This is weird, and requires a weird solution (This ast thing) to make the list readable again.
 
         cache_data.close()
     except FileNotFoundError:
@@ -62,7 +67,6 @@ def get_mapbox_map():
         videoID = None
     if videoID is None:
         videoID = str(youtubeAPI_request(city, state, country))
-        print("YoutubeAPI sent a request")
     # If the csv file doesn't exist, or there isn't cached data for this search, then videoID won't exist.
     # This tests if videoID was saved from cache or not. If not, is calls the API to make videoID.
     # The same process happens below with the yelpID
@@ -72,7 +76,6 @@ def get_mapbox_map():
         yelpID = None
     if yelpID is None and searchTerm != "":
         yelpID = yelp_call(searchTerm, city, state, country)
-        print("Yelp API sent a request")
 
     # Below handles the creation/modification of the cache csv file.
     cache_data = open('cache_data.csv', 'a', newline='')
@@ -110,3 +113,20 @@ def bookmark_page():
 
         bookmark_data = bookmark_schema.display_all_data()
         return render_template('bookmark.html', bookmark_data=bookmark_data)
+
+
+def clean_cache():  # Function that deletes old data from the cache
+    cleaned_cache = []
+    delete_date = datetime.now() - timedelta(days=1)  # Looks for entries that are one day old or older
+    with open('cache_data.csv', 'r', newline='') as cache_data:  # Goes through the cache. Makes a list of good entries
+        cache_reader = csv.reader(cache_data)
+        for row in cache_reader:
+            if row:  # Prevents the program from crashing when encountering a blank line
+                previousTime = datetime.strptime(row[6], "%Y-%m-%d %H:%M:%S.%f")
+                # Code for converting the saved datetime back into a datetime object:
+                # https://stackoverflow.com/questions/13356632/converting-a-datetime-into-a-string-and-back-again
+                if previousTime >= delete_date:
+                    cleaned_cache.append(row)
+    with open('cache_data.csv', 'w', newline='') as cache_data:  # Clears cache before adding the good entries back in
+        cache_writer = csv.writer(cache_data)
+        cache_writer.writerows(cleaned_cache)
