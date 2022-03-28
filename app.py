@@ -41,6 +41,8 @@ def get_mapbox_map():
 
         if searchTerm != "":
             yelpID = yelp_call(searchTerm, city, state, country)
+        else:
+            yelpID =''
     
         return render_template('mapbox_map.html', city=city, country=country, state=state, yelpID=yelpID, searchTerm=searchTerm, map_box_key=map_box_key, videoID=videoID)
     
