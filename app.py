@@ -90,7 +90,6 @@ def get_mapbox_map():
     except:
         return render_template('search_error.html')
 
-
 @app.route('/get_map', methods=['POST'])
 def submit_post():
     name = request.form.get('name')
@@ -106,19 +105,18 @@ def submit_post():
 
 @app.route('/get_bookmarks', methods=['GET', 'POST'])
 def bookmark_page():
+
     try:
         if request.method == 'POST':
             name = request.form.get('name')
             bookmark_schema.delete_data(name)
-            return redirect(
-                '/get_bookmarks')  # reload the bookmarks page, by default a get request. now without the deleted item
+            return redirect('/get_bookmarks')   # reload the bookmarks page, by default a get request. now without the deleted item
 
         else:
             bookmark_data = bookmark_schema.display_all_data()
             return render_template('bookmark.html', bookmark_data=bookmark_data)
     except:
         return render_template('search_error.html')
-
 
 def clean_cache():  # Function that deletes old data from the cache
     cleaned_cache = []
@@ -135,3 +133,4 @@ def clean_cache():  # Function that deletes old data from the cache
     with open('cache_data.csv', 'w', newline='') as cache_data:  # Clears cache before adding the good entries back in
         cache_writer = csv.writer(cache_data)
         cache_writer.writerows(cleaned_cache)
+        
