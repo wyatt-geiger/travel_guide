@@ -15,8 +15,29 @@ def youtubeAPI_request(city, state, country):
                                               developerKey=get_key())
     # This line does the hard work of converting our request into a URL. It also calls to get the developerKey
 
-    request = youtube.search().list(  # Here the YouTube search request in necessary
+    request = request_build(city, state, country, youtube)
+
+    response = request_send(request)
+
+    videoID = getVideoID(response)
+
+    return videoID
+
+
+def request_send(request):
+    response = request.execute()
+    return response
+
+
+def request_build(city, state, country, youtube):
+    request = youtube.search().list(
         part="snippet",  # Don't really know what this line does, but it's required
+        q=subject_line(city, state, country),  # This is where the equivalent to what you'd put into the search bar
+        # is put.
+        type="video",
+        videoCategoryId=19,  # This sets it so only videos of the YouTube category "Travel & Events" show up
+        order="relevance",
+        maxResults="5",  # This can be changed to give different amounts of videos per search
 
         # ---
 
@@ -30,19 +51,9 @@ def youtubeAPI_request(city, state, country):
         # Example for formatting: 10mi
 
         # ----
-
-        q=subject_line(city, state, country),  # This is where the equivalent to what you'd put into the search bar
-        # is put.
-        type="video",
-        videoCategoryId=19,  # This sets it so only videos of the YouTube category "Travel & Events" show up
-        order="relevance",
-        maxResults="12",  # This can be changed to give different amounts of videos per search
     )
-    response = request.execute()
 
-    videoID = getVideoID(response)
-
-    return videoID
+    return request
 
 
 def get_key():
