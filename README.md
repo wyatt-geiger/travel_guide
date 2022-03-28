@@ -4,6 +4,8 @@ YouTube API: https://console.cloud.google.com/apis/credentials (Have YouTube acc
 Map Box API: https://account.mapbox.com/access-tokens/create
 Yelp API: https://www.yelp.com/developers/documentation/v3/authentication
 
+Edit key.py and add your keys to the spaces provided
+
 
 This program is intended to be used as a travel guide. The user can enter a city, state (if in the United States), country,
 and a search term for looking up businesses in the area (optional parameter). From there, the user will be directed to a new
