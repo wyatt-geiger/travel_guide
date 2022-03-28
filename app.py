@@ -1,6 +1,4 @@
-from tabnanny import check
 from flask import Flask, render_template, request, redirect
-from location import location_main
 from YouTubeAPI import youtubeAPI_request
 from yelpbasic import yelp_call
 import bookmark_schema
